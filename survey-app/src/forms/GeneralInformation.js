@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function GeneralInformation({ onNext, onDataChange, data }) {
   const [formData, setFormData] = useState(data || {});
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     const updated = { ...formData, [name]: value };
@@ -12,6 +13,7 @@ export default function GeneralInformation({ onNext, onDataChange, data }) {
     onDataChange?.(updated);
   };
 
+  // Handle checkbox changes
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
     const current = formData[name] || [];
@@ -25,6 +27,7 @@ export default function GeneralInformation({ onNext, onDataChange, data }) {
     onDataChange?.(updated);
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     onNext?.();

@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function SafetyAndTrust({ onNext, onPrevious, onDataChange, data }) {
   const [formData, setFormData] = useState(data || {});
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     const updated = { ...formData, [name]: value };
@@ -12,6 +13,7 @@ export default function SafetyAndTrust({ onNext, onPrevious, onDataChange, data 
     onDataChange?.(updated);
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     onNext?.();

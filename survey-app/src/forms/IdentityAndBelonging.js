@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function IdentityAndBelonging({ onPrevious, onDataChange, onNext, data }) {
   const [formData, setFormData] = useState(data || {});
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     const updated = { ...formData, [name]: value };
@@ -12,6 +13,7 @@ export default function IdentityAndBelonging({ onPrevious, onDataChange, onNext,
     onDataChange?.(updated);
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     onNext?.();
