@@ -11,7 +11,7 @@ export default function Home() {
           <div className="border-4 border-black rounded-lg p-4">
             <form>
                 <p className="text-black">Name</p>
-                <input className="border border-black placeholder:text-black" name="Name" placeholder="Enter your name"/>
+                <input className="border border-black text-black placeholder:text-black" name="Name" placeholder="Enter your name"/>
                 <p className="text-black">Age</p>
                 <select className="border border-black text-black placeholder:text-black" name="Age">
                   <option value="">Select your age range</option>
@@ -53,7 +53,7 @@ export default function Home() {
                 </select>
                 <br/>
                 <p className="text-black">Location</p>
-                <input className="border border-black placeholder:text-black" name="location" placeholder="Enter your location"/>
+                <input className="border border-black text-black placeholder:text-black" name="location" placeholder="Enter your location"/>
                 <p className="text-black">Socioeconomic Bracket</p>
                 <select className="border border-black text-black placeholder:text-black" name="socioeconomic-bracket">
                   <option value="">Select your socioeconomic bracket</option>
@@ -87,6 +87,22 @@ export default function Home() {
                     <span>Seeking opportunities</span>
                   </label>
                 </div>
+                <br/>
+                <p className="text-black">Living Situation</p>
+                <select className="border border-black text-black placeholder:text-black" name="living-situation">
+                  <option value="">Select your living situation</option>
+                  <option value="alone">Living alone</option>
+                  <option value="with-parents">Living with parents</option>
+                  <option value="with-partner">Living with partner</option>
+                  <option value="with-roommates">Living with roommates</option>
+                  <option value="with-children">Living with children</option>
+                  <option value="other">Other</option>
+                </select>
+                <br/>
+                <p className="text-black">Contact Details (optional)</p>
+                <input className="border border-black text-black placeholder:text-black" name="email" placeholder="Enter your email" type="email"/>
+                <br/>
+                <input className="border border-black text-black placeholder:text-black" name="phone" placeholder="Enter your phone number" type="tel"/>
                 <br/>
                 <button type="submit" className="border border-black text-black">Next</button>
             </form>
