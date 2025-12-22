@@ -7,7 +7,7 @@ export default function SafetyAndTrust({ onNext, onPrevious, onDataChange }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    onDataChange?.({ [name]: value });
+    const updated = { ...formData, [name]: value };
     setFormData(updated);
     onDataChange?.(updated);
   };

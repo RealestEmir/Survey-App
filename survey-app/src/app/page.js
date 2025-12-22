@@ -4,6 +4,7 @@ import { useState } from "react";
 import GeneralInformation from "@/forms/GeneralInformation";
 import SafetyAndTrust from "@/forms/SafetyAndTrust";
 import IdentityAndBelonging from "@/forms/IdentityAndBelonging";
+import CommunityAndSafety from "@/forms/CommunityAndSafety";
 import { saveSurveyResponse } from "@/lib/surveyService";
 
 export default function Home() {
@@ -47,8 +48,13 @@ export default function Home() {
       <IdentityAndBelonging
         onPrevious={() => setCurrentForm("safety")}
         onDataChange={handleFormDataChange}
-        onSubmit={handleSubmit}
-        loading={loading}
+        onNext={() => setCurrentForm("community")}
+      />
+    ),
+    community: (
+      <CommunityAndSafety
+        onPrevious={() => setCurrentForm("identity")}
+        onDataChange={handleFormDataChange}
       />
     ),
   };
