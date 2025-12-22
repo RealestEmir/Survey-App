@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-export default function SafetyAndTrust({ onNext, onPrevious, onDataChange }) {
-  const [formData, setFormData] = useState({});
+export default function SafetyAndTrust({ onNext, onPrevious, onDataChange, data }) {
+  const [formData, setFormData] = useState(data || {});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,7 +21,7 @@ export default function SafetyAndTrust({ onNext, onPrevious, onDataChange }) {
     <form onSubmit={handleSubmit}>
         <h2 className="text-2xl font-semibold text-black mb-4">Safety and Trust</h2>
         <p className="text-black">Do you feel hopeful about the future of your country?</p>
-        <select className="border border-black text-black placeholder:text-black" name="hopefulFuture" onChange={handleChange}>
+        <select className="border border-black text-black placeholder:text-black" name="hopefulFuture" value={formData.hopefulFuture || ""} onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -29,7 +29,7 @@ export default function SafetyAndTrust({ onNext, onPrevious, onDataChange }) {
         </select>
         <br />
         <p className="text-black">Do you feel safe in public spaces</p>
-        <select className="border border-black text-black placeholder:text-black" name="safePublicSpaces" onChange={handleChange}>
+        <select className="border border-black text-black placeholder:text-black" name="safePublicSpaces" value={formData.safePublicSpaces || ""} onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -37,7 +37,7 @@ export default function SafetyAndTrust({ onNext, onPrevious, onDataChange }) {
         </select>
         <br />
         <p className="text-black">Do you trust your country's media?</p>
-        <select className="border border-black text-black placeholder:text-black" name="trustMedia" onChange={handleChange}>
+        <select className="border border-black text-black placeholder:text-black" name="trustMedia" value={formData.trustMedia || ""} onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -45,7 +45,7 @@ export default function SafetyAndTrust({ onNext, onPrevious, onDataChange }) {
         </select>
         <br />
         <p className="text-black">How would you describe your current mental health?</p>
-        <select className="border border-black text-black placeholder:text-black" name="mentalHealth" onChange={handleChange}>
+        <select className="border border-black text-black placeholder:text-black" name="mentalHealth" value={formData.mentalHealth || ""} onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="excellent">Excellent</option>
             <option value="good">Good</option>
@@ -54,7 +54,7 @@ export default function SafetyAndTrust({ onNext, onPrevious, onDataChange }) {
         </select>
         <br/>
         <p className="text-black">Do you believe people in your country are treated equally regardless of their background?</p>
-        <select className="border border-black text-black placeholder:text-black" name="equalTreatment" onChange={handleChange}>
+        <select className="border border-black text-black placeholder:text-black" name="equalTreatment" value={formData.equalTreatment || ""} onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>

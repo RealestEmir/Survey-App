@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-export default function CommunityAndSafety({ onPrevious, onDataChange }) {
-  const [formData, setFormData] = useState({});
+export default function CommunityAndSafety({ onPrevious, onDataChange, onNext, data }) {
+  const [formData, setFormData] = useState(data || {});
 
   const handleChange = (e) => {
     const { name, value } = e.target;

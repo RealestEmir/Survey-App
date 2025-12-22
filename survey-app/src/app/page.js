@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GeneralInformation from "@/forms/GeneralInformation";
 import SafetyAndTrust from "@/forms/SafetyAndTrust";
 import IdentityAndBelonging from "@/forms/IdentityAndBelonging";
@@ -15,6 +15,23 @@ export default function Home() {
   const handleFormDataChange = (data) => {
     setFormData((prev) => ({ ...prev, ...data }));
   };
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("surveyFormData");
+    if (saved) {
+      try {
+        setFormData(JSON.parse(saved));
+      } catch (e) {
+        console.error("Failed to load saved data:", e);
+      }
+    }
+  }, []);
+
+  // Save to localStorage whenever formData changes
+  useEffect(() => {
+    localStorage.setItem("surveyFormData", JSON.stringify(formData));
+  }, [formData]);
 
   const handleSubmit = async () => {
     try {
@@ -35,6 +52,7 @@ export default function Home() {
       <GeneralInformation
         onNext={() => setCurrentForm("safety")}
         onDataChange={handleFormDataChange}
+        data={formData}
       />
     ),
     safety: (
@@ -42,6 +60,7 @@ export default function Home() {
         onNext={() => setCurrentForm("identity")}
         onPrevious={() => setCurrentForm("general")}
         onDataChange={handleFormDataChange}
+        data={formData}
       />
     ),
     identity: (
@@ -49,12 +68,16 @@ export default function Home() {
         onPrevious={() => setCurrentForm("safety")}
         onDataChange={handleFormDataChange}
         onNext={() => setCurrentForm("community")}
+        data={formData}
       />
     ),
     community: (
       <CommunityAndSafety
         onPrevious={() => setCurrentForm("identity")}
         onDataChange={handleFormDataChange}
+        onSubmit={handleSubmit}
+        loading={loading}
+        data={formData}
       />
     ),
   };
