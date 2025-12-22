@@ -1,11 +1,24 @@
+"use client";
+
+import { useState } from "react";
+
 export default function SafetyAndTrust({ onNext, onPrevious, onDataChange }) {
+  const [formData, setFormData] = useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     onDataChange?.({ [name]: value });
+    setFormData(updated);
+    onDataChange?.(updated);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onNext?.();
   };
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); onNext?.(); }}>
+    <form onSubmit={handleSubmit}>
         <h2 className="text-2xl font-semibold text-black mb-4">Safety and Trust</h2>
         <p className="text-black">Do you feel hopeful about the future of your country?</p>
         <select className="border border-black text-black placeholder:text-black" name="hopefulFuture" onChange={handleChange}>
