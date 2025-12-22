@@ -1,4 +1,6 @@
-import SurveyForm from "@/forms/GeneralInformation";
+import GeneralInformation from "@/forms/GeneralInformation";
+import SafetyAndTrust from "@/forms/SafetyAndTrust";
+import IdentityAndBelonging from "@/forms/IdentityAndBelonging";
 
 export default function Home() {
   return (
@@ -11,7 +13,7 @@ export default function Home() {
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           <div className="border-4 border-black rounded-lg p-4">
-            <SurveyForm />
+            <IdentityAndBelonging />
           </div>
         </div>
       </main>

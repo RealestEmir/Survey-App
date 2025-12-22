@@ -1,6 +1,7 @@
-export default function SurveyForm() {
+export default function GeneralInformation() {
   return (
     <form>
+      <h2 className="text-2xl font-semibold text-black mb-4">General Information</h2>
       <p className="text-black">Name</p>
       <input className="border border-black text-black placeholder:text-black" name="Name" placeholder="Enter your name" />
       <p className="text-black">Age</p>
