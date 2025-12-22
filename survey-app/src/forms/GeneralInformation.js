@@ -1,23 +1,37 @@
+"use client";
+
+import { useState } from "react";
+
 export default function GeneralInformation({ onNext, onDataChange }) {
+  const [formData, setFormData] = useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    onDataChange?.({ [name]: value });
+    const updated = { ...formData, [name]: value };
+    setFormData(updated);
+    onDataChange?.(updated);
   };
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
-    onDataChange?.((prev) => {
-      const current = prev?.[name] || [];
-      return {
-        [name]: checked
-          ? [...current, value]
-          : current.filter((v) => v !== value),
-      };
-    });
+    const current = formData[name] || [];
+    const updated = {
+      ...formData,
+      [name]: checked
+        ? [...current, value]
+        : current.filter((v) => v !== value),
+    };
+    setFormData(updated);
+    onDataChange?.(updated);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onNext?.();
   };
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); onNext?.(); }}>
+    <form onSubmit={handleSubmit}>
       <h2 className="text-2xl font-semibold text-black mb-4">General Information</h2>
       <p className="text-black">Name</p>
       <input className="border border-black text-black placeholder:text-black" name="name" placeholder="Enter your name" onChange={handleChange} />
@@ -113,7 +127,9 @@ export default function GeneralInformation({ onNext, onDataChange }) {
       <br />
       <input className="border border-black text-black placeholder:text-black" name="phone" placeholder="Enter your phone number" type="tel" onChange={handleChange} />
       <br />
-      <button type="submit" className="border border-black text-black">Next</button>
+      <button type="submit" className="border border-black text-black px-4 py-2">
+        Next
+      </button>
     </form>
   );
 }
