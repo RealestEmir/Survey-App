@@ -1,9 +1,14 @@
-export default function SafetyAndTrust() {
+export default function SafetyAndTrust({ onNext, onPrevious, onDataChange }) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    onDataChange?.({ [name]: value });
+  };
+
   return (
-    <form>
+    <form onSubmit={(e) => { e.preventDefault(); onNext?.(); }}>
         <h2 className="text-2xl font-semibold text-black mb-4">Safety and Trust</h2>
         <p className="text-black">Do you feel hopeful about the future of your country?</p>
-        <select className="border border-black text-black placeholder:text-black" name="hopeful-future">
+        <select className="border border-black text-black placeholder:text-black" name="hopefulFuture" onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -11,7 +16,7 @@ export default function SafetyAndTrust() {
         </select>
         <br />
         <p className="text-black">Do you feel safe in public spaces</p>
-        <select className="border border-black text-black placeholder:text-black" name="safe-public-spaces">
+        <select className="border border-black text-black placeholder:text-black" name="safePublicSpaces" onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -19,7 +24,7 @@ export default function SafetyAndTrust() {
         </select>
         <br />
         <p className="text-black">Do you trust your country's media?</p>
-        <select className="border border-black text-black placeholder:text-black" name="trust-media">
+        <select className="border border-black text-black placeholder:text-black" name="trustMedia" onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -27,7 +32,7 @@ export default function SafetyAndTrust() {
         </select>
         <br />
         <p className="text-black">How would you describe your current mental health?</p>
-        <select className="border border-black text-black placeholder:text-black" name="mental-health">
+        <select className="border border-black text-black placeholder:text-black" name="mentalHealth" onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="excellent">Excellent</option>
             <option value="good">Good</option>
@@ -36,13 +41,14 @@ export default function SafetyAndTrust() {
         </select>
         <br/>
         <p className="text-black">Do you believe people in your country are treated equally regardless of their background?</p>
-        <select className="border border-black text-black placeholder:text-black" name="equal-treatment">
+        <select className="border border-black text-black placeholder:text-black" name="equalTreatment" onChange={handleChange}>
             <option value="">Select an option</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
             <option value="unsure">Unsure</option>
         </select>
         <br/>
+        <button type="button" onClick={onPrevious} className="border border-black text-black">Previous</button>
         <button type="submit" className="border border-black text-black">Next</button>
         <br />
     </form>
